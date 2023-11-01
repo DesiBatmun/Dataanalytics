@@ -6,4 +6,5 @@ groceries<-read.transactions("File Directory/groceries1.csv",format="basket",sep
 apriori(groceries)
 groceryrules <- apriori(groceries, parameter = list(support =0.006, confidence = 0.25, minlen = 2))
 rules<-sort(groceryrules, decreasing=TRUE,by="confidence")
-plot(rules,method="graph",shading=NA)
+inspect(sort(groceryrules, by = "lift")[1:5])
+
