@@ -1,0 +1,21 @@
+# Create a simple dataset
+set.seed(123)
+data <- data.frame(
+  x = c(rnorm(33, mean = -2, sd = 1), rnorm(33, mean = 2, sd = 1), rnorm(34, mean = 0, sd = 1)),
+  y = c(rnorm(33, mean = -2, sd = 1), rnorm(33, mean = 2, sd = 1), rnorm(34, mean = 0, sd = 1))
+)
+
+# Ask the user for the number of clusters
+k <- as.integer(readline("Enter the number of clusters (e.g., 2, 3, etc.): "))
+
+# Perform k-means clustering with the specified number of clusters
+kmeans_result <- kmeans(data, centers = k)
+
+# Add the cluster assignments to the original data
+data$cluster <- as.factor(kmeans_result$cluster)
+
+# Create a scatter plot with points colored by cluster using base R
+plot(data$x, data$y, col = data$cluster, pch = 19, main = paste("K-Means Clustering Results (k =", k, ")"))
+
+# Add a legend
+legend("topright", legend = unique(data$cluster), col = 1:k, pch = 19, title = "Cluster")

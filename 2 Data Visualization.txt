@@ -1,0 +1,65 @@
+#### Data Visualization    ####
+
+#Histogram
+
+AirPassengers
+hist(AirPassengers)
+hist(AirPassengers, breaks=c(100, seq(200,700, 150)))
+
+# DotPlot 
+
+x<-c(3,5,7,5,3,2,6,8,5,6,9,8)
+d<-c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
+dotchart(x,labels=d)
+
+
+# Simple  Bar Plot with Added Labels
+
+mtcars
+counts <- table(mtcars$gear)
+barplot(counts, main="Car Distribution",xlab="Number of Gears")
+
+
+# Simple Horizontal Bar Plot with Added Labels
+counts <- table(mtcars$gear)
+barplot(counts, main="Car Distribution", horiz=TRUE, names.arg=c("3 Gears", "4 Gears", "5 Gears"))
+
+
+
+# Simple Pie Chart
+slices <- c(10, 12,4, 16, 8)
+lbls <- c("US", "UK", "Australia", "Germany", "France")
+pie(slices, labels = lbls, main="Pie Chart of Countries")
+
+#PieChart in R 
+library(plotrix)
+slices <- c(10, 12, 4, 16, 8)
+lbls <- c("US", "UK", "Australia", "INDIA", "France")
+pie3D(slices,labels=lbls,explode=0.1,
+      main="Pie Chart of Countries ")
+
+
+#Boxplot of MPG by Car Cylinders
+boxplot(mpg~cyl,data=mtcars, main="Car Milage Data",
+        xlab="Number of Cylinders", ylab="Miles Per Gallon")
+
+
+# Simple Scatterplot
+attach(mtcars)
+plot(wt, mpg, main="Scatterplot Example",
+     xlab="Car Weight ", ylab="Miles Per Gallon ", pch=19) 
+
+
+#MosaicPlot
+library(vcd)
+mosaic(~Class+Sex+Age+Survived, data=Titanic, shade=TRUE,
+       legend=TRUE)
+
+
+#Dendrogram
+require(graphics)
+USArrests
+## a smallish simple dendrogram
+dhc <- as.dendrogram(hc <- hclust(dist(USArrests), "ave"))
+(dhc21 <- dhc[[2]][[1]])
+plot(dhc21)

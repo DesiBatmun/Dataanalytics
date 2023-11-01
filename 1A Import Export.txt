@@ -1,0 +1,95 @@
+# Data Import / Export
+#Entering data from the keyboard
+mydata <- data.frame(age=numeric(0), gender=character(0), weight=numeric(0))
+mydata <- edit(mydata) 
+mydata
+
+# to add new attribute using data editor 
+mydata <- edit(mydata) 
+mydata
+
+#Set Current Working Directory
+setwd("C:/Users/SIVARAMAKRISHNAN/OneDrive/Desktop/DATA ANALYTICS-M.Tech/DATA ANALTICS LAB/Expt 1")
+getwd()
+
+
+#Importing data from a delimited text file
+
+grades <- read.table("dataset.csv", header=TRUE, sep=",")
+grades
+
+# Importing data from Excel
+
+grades <- read.csv("dataset.csv", header=TRUE, sep=",")
+grades
+
+
+
+# create a data frame, perform import/export 
+var1 <- 1:5
+var2 <- (1:5)/10
+var3 <- c("R", "and", "Data Mining", "Examples", "Case Studies")
+df1 <- data.frame(var1, var2, var3)
+names(df1) <- c("VarInt", "VarReal", "VarChar")
+# save to a csv file
+df1
+write.csv(df1, "dataset1.csv", row.names = FALSE)
+# read from a csv file
+df2 <- read.csv("dataset1.csv")
+print(df2)
+
+
+
+#Web Scrapping 
+url <- "https://s3.amazonaws.com/bsp-ocsit-prod-east-appdata/datagov/wordpress/agency-participation.csv"
+url
+data_gov <- read.csv(url, stringsAsFactors = FALSE)
+head(data_gov)
+
+# IMPORTING / EXPORTING USING SQL
+
+bdates <- c("02/27/95","01/14/95", "02/28/95", "03/04/97","02/27/94")
+bdates
+as.Date(bdates, "%m/%d/%y")
+persid = c(1013,1011,1014,1012,1023)
+first=c("Rahul","Siva","Sachin","venkata","Chris")
+last=c("Kumar","Raman","Ramesh","Reddy","Brown")
+stat = c("AP","TN","UP","AP","MP")
+df1 <- data.frame(id=c(seq(1,5)), date=c(bdates),  personid=c(persid))
+df1
+df2 <- data.frame(id=c(persid), firstname=c(first),
+                  lastname=c(last), state=c(stat))
+df2
+install.packages("sqldf")
+library(sqldf)
+
+sqldf("SELECT * FROM df1")
+sqldf("SELECT * FROM df2")
+sqldf("SELECT COUNT(*) FROM df2 WHERE state = 'AP'")
+sqldf("SELECT * FROM df2 WHERE state = 'AP'")
+
+sqldf("SELECT df2.firstname, df2.lastname,df1.date  FROM df1
+      INNER JOIN df2 ON df1.personid = df2.id WHERE df2.state = 'AP'")
+
+sqldf("SELECT df2.state FROM df1
+      INNER JOIN df2 ON df1.personid = df2.id ")
+
+n<-sqldf("SELECT df2.id,df2.firstname, df2.lastname, df2.state,df1.date FROM df1
+      INNER JOIN df2 ON df1.personid = df2.id")
+n
+
+write.table(n,"C:/Users/SIVARAMAKRISHNAN/OneDrive/Desktop/DATA ANALYTICS-M.Tech/DATA ANALTICS LAB/Expt 1/Export.csv",row.names=FALSE,sep=",")
+
+student<- read.csv("C:/Users/SIVARAMAKRISHNAN/OneDrive/Desktop/DATA ANALYTICS-M.Tech/DATA ANALTICS LAB/Expt 1/Export.csv")
+View(student)
+sqldf("SELECT * FROM student WHERE state = 'AP'")
+
+
+
+# Reading .dat file
+install.packages("data.table")
+library(data.table)
+mydat<-fread('http://www.stats.ox.ac.uk/pub/datasets/csb/ch11b.dat')
+head(mydat)
+
+

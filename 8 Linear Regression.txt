@@ -1,0 +1,18 @@
+# Sample data
+set.seed(123)
+x <- 1:10
+y <- 2 * x + rnorm(10)
+
+# Create a scatter plot before linear regression
+par(mfrow = c(1, 2))  # Set up a 1x2 grid of plots
+plot(x, y, main = "Scatter Plot (Before Regression)", xlab = "X", ylab = "Y")
+
+# Create a linear regression model
+model <- lm(y ~ x)
+
+# Plot the data and regression line after regression
+plot(x, y, main = "Scatter Plot with Regression Line", xlab = "X", ylab = "Y")
+abline(model, col = "red")
+
+# Reset the plotting configuration
+par(mfrow = c(1, 1))

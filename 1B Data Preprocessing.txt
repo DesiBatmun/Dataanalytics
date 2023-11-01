@@ -1,0 +1,169 @@
+##################################################
+######### Data Preprocessing ########################
+##################################################
+
+
+#Handling Missing values NA
+x <- c(1, 6, 2, NA)
+is.na(x) # TRUE for NAs, otherwise FALSE
+x == NA # All elements are set to NA
+x <- c(1, NA, 6, 2, 10)
+x > 4 # The second element will be NA
+x[x>4] # NB: This generates a vector of length 3
+
+x[!is.na(x) & x > 4] <- c(101, 102)
+x
+y <- na.omit(x)#omit the NA value 
+y
+
+
+age <- c(23, 16, NA)
+age
+mean(age)
+mean(age, na.rm = TRUE)
+
+
+
+######Sorting using missing values #############
+#By default, sort() omits any NAs. The function order() places NAs last. Hence:
+x <- c(1, 20, 2, NA, 22)
+order(x) # By default, na.last=TRUE
+x[order(x)]
+sort(x) # By default na.last=NA
+sort(x, na.last=TRUE)
+
+
+
+
+
+
+
+
+#Special values
+
+NA + 1
+sum(c(NA, 1, 2))
+median(c(NA, 1, 2, 3), na.rm = TRUE)
+length(c(NA, 2, 3, 4))
+
+length(c(1, 2, NULL, 4))
+sum(c(1, 2, NULL, 4))
+
+
+pi
+pi/0
+2 * Inf
+Inf - 1e+10
+Inf + Inf
+3 < -Inf
+Inf == Inf
+
+#NaN Stands for not a number. 
+NaN + 1
+exp(NaN)
+#The function is.nan can be used to detect NaN's.
+
+exp(-Inf)
+NA == NA
+NA == NULL
+NULL == NULL
+NA & FALSE
+
+
+person <- read.csv("C:/Users/SIVARAMAKRISHNAN/OneDrive/Desktop/DATA ANALYTICS-M.Tech/DATA ANALTICS LAB/Expt 1/abc.txt")
+person
+
+txt <- readLines("C:/Users/SIVARAMAKRISHNAN/OneDrive/Desktop/DATA ANALYTICS-M.Tech/DATA ANALTICS LAB/Expt 1/address.txt")
+txt
+
+# detect lines starting with a percentage sign..
+I <- grepl("^%", txt)
+I
+# and throw them out
+dat <- txt[!I]
+dat
+fieldList <- strsplit(dat, split = ",")
+fieldList
+
+class(c("abc", "def"))
+class(1:10)
+class(c(pi, exp(1)))
+class(factor(c("abc", "def")))
+sapply(dat, class)
+
+typeof(c("abc", "def"))
+typeof(1:10)
+typeof(c(pi, exp(1)))
+typeof(factor(c("abc", "def")))
+f <- factor(c("a", "b", "a", "a", "c"))
+levels(f)
+
+
+# Conversion to a factor variable can be done as in the example below.
+# example:
+gender <- c(2, 1, 1, 2, 0, 1, 1)
+recode <- c(male = 1, female = 2)
+(gender <- factor(gender, levels = recode, labels = names(recode)))
+(gender <- relevel(gender, ref = "female"))
+
+
+gender <- c("M", "male ", "Female", "fem.")
+grepl("m", gender)
+grep("m", gender)
+grepl("m", gender, ignore.case = TRUE)
+grepl("m", tolower(gender))
+grepl("^m", gender, ignore.case = TRUE)
+
+d <- data.frame(x = 1:10, y = letters[1:10], z = LETTERS[11:20])
+d
+d[1,1]
+d[3,2]
+d[4,3]
+d[3]
+d[2, ]
+d[, 1]
+d[, "x"]
+
+d[, "x", drop = FALSE]
+
+d[c("x", "z")]
+d[d$x,"x"]
+d[d$x,"y"]
+d
+d[d$x > 3, "y", drop = FALSE]
+
+
+A<-c(1, 2, "three")
+A
+B<-c(1:3) * 2
+B
+C<-c(1:4) * c(1, 2)
+C
+
+
+D <- c("red", "green", "blue")
+D
+
+
+capColor = c(huey = "red", duey = "blue", louie = "green")
+
+capColor["louie"]
+
+names(capColor)[capColor == "blue"]
+
+F <- c(4, 7, 6, 5, 2, 8)
+F
+
+G <-c(2,3,4,5,6,7,8,9,10)
+G
+
+I <- G< 6
+I
+
+J <- G > 7
+J
+
+
+
+
+
