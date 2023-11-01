@@ -1,8 +1,5 @@
-####### APRIORI Algorithm ###############
-setwd("File Directory / File Path ")
-
-getwd()
-
+install.packages("arulez")
+install.packages("arulezViz")
 library(arules)
 library(arulesViz)
 groceries<-read.transactions("File Directory/groceries1.csv",format="basket",sep=",")
