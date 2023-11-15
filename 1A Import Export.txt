@@ -1,40 +1,30 @@
-# Data Import / Export
-#Entering data from the keyboard
+
 mydata <- data.frame(age=numeric(0), gender=character(0), weight=numeric(0))
 mydata <- edit(mydata) 
 mydata
 
-# to add new attribute using data editor 
 mydata <- edit(mydata) 
 mydata
 
-#Set Current Working Directory
 setwd("C:/Users/SIVARAMAKRISHNAN/OneDrive/Desktop/DATA ANALYTICS-M.Tech/DATA ANALTICS LAB/Expt 1")
 getwd()
 
 
-#Importing data from a delimited text file
-
 grades <- read.table("dataset.csv", header=TRUE, sep=",")
 grades
-
-# Importing data from Excel
-
 grades <- read.csv("dataset.csv", header=TRUE, sep=",")
 grades
 
 
-
-# create a data frame, perform import/export 
 var1 <- 1:5
 var2 <- (1:5)/10
 var3 <- c("R", "and", "Data Mining", "Examples", "Case Studies")
 df1 <- data.frame(var1, var2, var3)
 names(df1) <- c("VarInt", "VarReal", "VarChar")
-# save to a csv file
+
 df1
 write.csv(df1, "dataset1.csv", row.names = FALSE)
-# read from a csv file
+
 df2 <- read.csv("dataset1.csv")
 print(df2)
 
@@ -46,7 +36,7 @@ url
 data_gov <- read.csv(url, stringsAsFactors = FALSE)
 head(data_gov)
 
-# IMPORTING / EXPORTING USING SQL
+
 
 bdates <- c("02/27/95","01/14/95", "02/28/95", "03/04/97","02/27/94")
 bdates
@@ -86,7 +76,6 @@ sqldf("SELECT * FROM student WHERE state = 'AP'")
 
 
 
-# Reading .dat file
 install.packages("data.table")
 library(data.table)
 mydat<-fread('http://www.stats.ox.ac.uk/pub/datasets/csb/ch11b.dat')

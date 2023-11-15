@@ -45,3 +45,30 @@ write(groceryrules, file = "groceryrules.csv",
 groceryrules_df <- as(groceryrules, "data.frame")
 groceryrules_df 
 str(groceryrules_df)
+
+#Extras
+install.packages("DescTools")
+library(DescTools)
+data <- c(1, 2, 2, 3, 3, 3, 4, 4, 5)
+mode_result <- Mode(data)
+
+covariance_matrix <- cov(mtcars)
+correlation_matrix <- cor(mtcars)
+variance_values <- apply(mtcars, 2, var)
+iqr_values <- apply(mtcars, 2, IQR)
+
+library(cluster)
+data_matrix <- matrix(rnorm(30), ncol = 3)
+hc <- hclust(dist(data_matrix))
+plot(hc, main = "Dendrogram")
+
+min_max_normalized <- (data - min(data)) / (max(data) - min(data))
+z_score_normalized <- (data - mean(data)) / sd(data)
+
+iqr_value <- IQR(data)
+q1_value <- quantile(data, 0.25)
+q3_value <- quantile(data, 0.75)
+
+df <- df[-2, ] #row
+df <- df[, -2] #column
+df <- df[df$Name != "Jane", ]

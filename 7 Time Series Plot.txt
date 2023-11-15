@@ -1,33 +1,26 @@
-# Load Required Libraries
+
 library(xts)
 library(forecast)
 
-# Generate Simulated Financial Data (Replace with your data source)
 set.seed(123)  # For reproducibility
 n <- 100
 dates <- seq(Sys.Date() - n, by = "days", length.out = n)
 price_data <- cumsum(rnorm(n, mean = 0.1, sd = 1))
 financial_data <- xts(price_data, order.by = dates)
 
-# Time series plot
 plot(financial_data, main = "Simulated Financial Time Series")
 
-# ACF and PACF plots
 acf(financial_data, main = "ACF")
 pacf(financial_data, main = "PACF")
 
-# Fit an ARIMA model (Replace with your modeling approach)
 arima_model <- auto.arima(financial_data)
 
-# Model diagnostics
 summary(arima_model)
 plot(arima_model)
 
-# Forecast future values
 forecast_values <- forecast(arima_model, h = 10)  # Forecast the next 10 periods
 print(forecast_values)
 
-# Plot the forecasts
 plot(forecast_values, main = "Financial Data Forecast")
 
 

@@ -1,8 +1,6 @@
 #  Expt  3    Data Manipulation 
 
-###################################
-##### Relationship between the Attributes 
-###################################
+
 install.packages("ggpubr")
 library("ggpubr")
 mtcars
@@ -21,7 +19,7 @@ ggqqplot(my_data$mpg, ylab = "MPG")
 # wt
 ggqqplot(my_data$wt, ylab = "WT")
 
-######## Pearson Correlation Coefficient####
+
 res <- cor.test(my_data$wt, my_data$mpg, 
                 method = "pearson")
 res
@@ -29,81 +27,50 @@ res
 res$p.value
 # Extract the correlation coefficient
 res$estimate
-######## Kendell Correlation Coefficient####
+
 res2 <- cor.test(my_data$wt, my_data$mpg,  method="kendall")
 res2
-######## Spearman  Correlation Coefficient####
 res2 <-cor.test(my_data$wt, my_data$mpg,  method = "spearman")
 res2
-
-####### Chi-Square Test #######
-
-
-# Load the library.
 library("MASS")
 
-# Create a data frame from the main data set.
 car.data <- data.frame(Cars93$AirBags, Cars93$Type)
-
-# Create a table with the needed variables.
 car.data = table(Cars93$AirBags, Cars93$Type) 
 print(car.data)
 
-# Perform the Chi-Square test.
 print(chisq.test(car.data))
-
-# Correlation matrix from mtcars
-# with mpg, cyl, and disp as rows
-# and hp, drat, and wt as columns
 x <- mtcars[1:3]
 y <- mtcars[4:6]
 cor(x, y)
-
-# Correlation Plot 
 plot(airquality[, 1:3], main = "Correlation plot")
 
 install.packages("corrgram")
-# First Correlogram Example
 library(corrgram)
 corrgram(mtcars, order=TRUE, lower.panel=panel.shade,
          upper.panel=panel.pie, text.panel=panel.txt,
          main="Car Milage Data in PC2/PC1 Order")
-
-#######################################
-# Select Relevant Attributes 
-#######################################
 iris
 freq.table <- table(iris$Species)
 freq.table
 head(freq.table)
 install.packages("dplyr")
-#To load dplyr package
 library("dplyr")
-#To load datasets package
 library("datasets")
-#To load iris dataset
 data(iris)
 iris
 summary(iris)
-#To select the following columns
 selected <- select(iris, Sepal.Length, Sepal.Width, Petal.Length)
 head(selected)
-#To select all columns from Sepal.Length to Petal.Length
 selected1 <- select(iris, Sepal.Length:Petal.Length)
-#To print first four rows
 head(selected1, 4)                           
-#To select columns with numeric indexes
 selected1 <- select(iris,c(3:5))
 selected1
 head(selected1)
-#We use(-)to hide a particular column
 selected <- select(iris, -Sepal.Length, -Sepal.Width)
 head(selected)
-#To select the first 3 rows with Species as setosa
 filtered <- filter(iris, Species == "setosa" )
 filtered 
 head(filtered,3)
-#To select the last 5 rows with Species as versicolor and Sepal width more than 3
 filtered1 <- filter(iris, Species == "versicolor", Sepal.Width > 3)
 filtered1
 tail(filtered1)

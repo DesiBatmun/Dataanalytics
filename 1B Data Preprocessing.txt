@@ -1,15 +1,10 @@
-##################################################
-######### Data Preprocessing ########################
-##################################################
 
-
-#Handling Missing values NA
 x <- c(1, 6, 2, NA)
-is.na(x) # TRUE for NAs, otherwise FALSE
-x == NA # All elements are set to NA
+is.na(x) 
+x == NA 
 x <- c(1, NA, 6, 2, 10)
-x > 4 # The second element will be NA
-x[x>4] # NB: This generates a vector of length 3
+x > 4 
+x[x>4] 
 
 x[!is.na(x) & x > 4] <- c(101, 102)
 x
@@ -22,14 +17,10 @@ age
 mean(age)
 mean(age, na.rm = TRUE)
 
-
-
-######Sorting using missing values #############
-#By default, sort() omits any NAs. The function order() places NAs last. Hence:
 x <- c(1, 20, 2, NA, 22)
-order(x) # By default, na.last=TRUE
+order(x)
 x[order(x)]
-sort(x) # By default na.last=NA
+sort(x) 
 sort(x, na.last=TRUE)
 
 
@@ -58,10 +49,8 @@ Inf + Inf
 3 < -Inf
 Inf == Inf
 
-#NaN Stands for not a number. 
 NaN + 1
 exp(NaN)
-#The function is.nan can be used to detect NaN's.
 
 exp(-Inf)
 NA == NA
@@ -76,10 +65,8 @@ person
 txt <- readLines("C:/Users/SIVARAMAKRISHNAN/OneDrive/Desktop/DATA ANALYTICS-M.Tech/DATA ANALTICS LAB/Expt 1/address.txt")
 txt
 
-# detect lines starting with a percentage sign..
 I <- grepl("^%", txt)
 I
-# and throw them out
 dat <- txt[!I]
 dat
 fieldList <- strsplit(dat, split = ",")
@@ -99,8 +86,6 @@ f <- factor(c("a", "b", "a", "a", "c"))
 levels(f)
 
 
-# Conversion to a factor variable can be done as in the example below.
-# example:
 gender <- c(2, 1, 1, 2, 0, 1, 1)
 recode <- c(male = 1, female = 2)
 (gender <- factor(gender, levels = recode, labels = names(recode)))
